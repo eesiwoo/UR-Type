@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="../static/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="../static/css/survey.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+			<div class="header"><h1>UR - Type ?</h1>
+			당신이 즐겨입는 옷은 무엇인가요 ?<br/>
+			당신의 패션에 대해 알려주세요.
+			</div>
+			<br/>
+			<div class="QnA">
+				<form action="result" method="POST" id="result">  {% csrf_token %}
+					<div id="Q1">
+						<h3> 선호하는 브랜드의 규모는 어느정도 인가요 ?</h3>
+						( 브랜드의 규모는 무신사에서 제공되는 정보입니다. )
+						<br/><br/>
+						<input type="radio" id="Globals" name="brand_Size" value="Globals"/>
+    					<label for="Globals"><span></span>글로벌 브랜드</label>
+    					<input type="radio" id="National" name="brand_Size" value="National"/>
+    					<label for="National"><span></span>내셔널 브랜드</label>
+    					<br/><br/>
+    					<input type="radio" id="Middle" name="brand_Size" value="Middle"/>
+    					<label for="Middle"><span></span>미들 브랜드</label>
+    					<input type="radio" id="Soho" name="brand_Size" value="Soho"/>
+    					<label for="Soho"><span></span>소호 브랜드</label>
+    					<br/><br/>
+    					<button class="glow-on-hover" type="button"> NEXT ! </button>
+					</div>
+					<div id="Q2">
+						<h3> 선호하는 룩은 어떤 룩인가요 ?</h3>
+						<br/>
+						<input type="radio" id="미니멀" name="brand_Genre" value="미니멀"/>
+    					<label for="미니멀"><span></span>미니멀 룩</label>
+    					<input type="radio" id="모던" name="brand_Genre" value="모던"/>
+    					<label for="모던"><span></span>모던 룩</label>
+    					<input type="radio" id="스트릿" name="brand_Genre" value="스트릿/힙합"/>
+    					<label for="스트릿"><span></span>스트릿 룩</label>
+    					<br/><br/>
+    					<input type="radio" id="아메카지" name="brand_Genre" value="아메카지"/>
+    					<label for="아메카지"><span></span>아메카지 룩</label>
+    					<input type="radio" id="스포티지" name="brand_Genre" value="스포티지"/>
+    					<label for="스포티지"><span></span>스포티지 룩</label>
+    					<input type="radio" id="캐주얼" name="brand_Genre" value="캐주얼"/>
+    					<label for="캐주얼"><span></span>캐주얼 룩</label>
+    					<br/><br/>
+    					<button class="glow-on-hover" type="button"> NEXT ! </button>
+					</div>
+					<div id="Q3">
+						<h3> 포인트 있는 의류를 좋아하시나요 ?</h3>
+						색상이 아닌 디자인의 포인트를 의미합니다.
+						<br/><br/>
+						<input type="radio" id="point_Y" name="design_Point" value="Y"/>
+    					<label for="point_Y"><span></span>네 ! 포인트 있는 옷이 좋아요.</label>
+    					<br/><br/>
+    					<input type="radio" id="point_N" name="design_Point" value="N"/>
+    					<label for="point_N"><span></span>아뇨 ! 심플한 옷이 좋아요.</label>
+    					<br/><br/>
+    					<button class="glow-on-hover" type="button"> NEXT ! </button>
+					</div>
+					<div id="Q4">
+						<h3> 그렇다면 컬러감 있는 의류는요 ?</h3>
+						<br/>
+						<input type="radio" id="color_Y" name="design_Color" value="Y"/>
+    					<label for="color_Y"><span></span>다양한 컬러의 옷이 좋아요.</label>
+    					<br/><br/>
+    					<input type="radio" id="color_N" name="design_Color" value="N" />
+    					<label for="color_N"><span></span>무채색의 옷이 좋아요.</label>
+    					<br/><br/>
+    					<button class="glow-on-hover" type="button"> NEXT ! </button>
+					</div>
+					<div id="Q5">
+						<h3> 바지의 평균 가격이 10만원이면 비싸다 ?</h3>
+						<br/>
+						<input type="radio" id="low" name="avg_Price" value="high"/>
+    					<label for="low"><span></span>투자할 수 있을 것 같아요 !</label>
+    					<br/><br/>
+						<input type="radio" id="high" name="avg_Price" value="low"/>
+    					<label for="high"><span></span>조금 부담스러워요..!</label>
+					</div>
+				</form>
+				<br/>
+				<div>
+    				<button class="glow-on-hover" type="button" id='finish'> Your Type is.. </button>
+    			</div>
+			</div>
+		</div>
+</body>
+
+
+
+
+<script type="text/javascript">
+	/* first fade in*/
+	$(document).ready(function(){
+		$('.container').children('.header').animate({opacity: "1"}, 1000,function(){
+			$('#Q1').fadeIn("1000")
+			$('#Q1').children('.glow-on-hover').animate({opacity: "1"}, 1000)
+		})
+		
+	});
+	
+	/* press button */
+	$('#Q1').children('.glow-on-hover').click(function(){
+		/* 유효성 검사 진행 */
+		var checkValue = $('#Q1').find('input[type="radio"]:checked');
+		if(!checkValue.length){
+			alert("내 취향을 선택해 주세요 !")
+		}
+		else{
+			$('#Q1').css("display","none");
+			$('#Q1').children('.glow-on-hover').animate({opacity: "0"})
+			$('#Q2').fadeIn("1000")
+			$('#Q2').children('.glow-on-hover').animate({opacity: "1"}, 1000)
+		}
+	})
+	
+	$('#Q2').children('.glow-on-hover').click(function(){
+		/* 유효성 검사 진행 */
+		var checkValue = $('#Q2').find('input[type="radio"]:checked');
+		if(!checkValue.length){
+			alert("내 취향을 선택해 주세요 !")
+		}
+		else{
+			$('#Q2').css("display","none");
+			$('#Q2').children('.glow-on-hover').animate({opacity: "0"})
+			$('#Q3').fadeIn("1000")
+			$('#Q3').children('.glow-on-hover').animate({opacity: "1"}, 1000)
+		}	
+	})
+	
+	$('#Q3').children('.glow-on-hover').click(function(){
+		/* 유효성 검사 진행 */
+		var checkValue = $('#Q3').find('input[type="radio"]:checked');
+		if(!checkValue.length){
+			alert("내 취향을 선택해 주세요 !")
+		}
+		else{
+			$('#Q3').css("display","none");
+			$('#Q3').children('.glow-on-hover').animate({opacity: "0"})
+			$('#Q4').fadeIn("1000")
+			$('#Q4').children('.glow-on-hover').animate({opacity: "1"}, 1000)
+		}
+	})
+	
+	$('#Q4').children('.glow-on-hover').click(function(){
+		/* 유효성 검사 진행 */
+		var checkValue = $('#Q4').find('input[type="radio"]:checked');
+		if(!checkValue.length){
+			alert("내 취향을 선택해 주세요 !")
+		}
+		else{
+			$('#Q4').css("display","none");
+			$('#Q4').children('.glow-on-hover').animate({opacity: "0"})
+			$('#Q5').fadeIn("1000")
+			$('#finish').animate({opacity: "1"}, 1000)
+		}	
+	})
+	
+	$('#finish').click(function(){
+		/* 유효성 검사 진행 */
+		var checkValue = $('#Q5').find('input[type="radio"]:checked');
+		if(!checkValue.length){
+			alert("내 취향을 선택해 주세요 !")
+		}
+		else{
+			result.submit();
+		}
+	})
+	
+
+</script>
+</html>

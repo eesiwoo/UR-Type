@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link href="../static/css/index.css" rel="stylesheet" type="text/css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<div class="header"><h1>Thanks !</h1>
+		피드백을 보내주셔서 감사합니다.<br/>
+		</div>
+		<br/>
+		<button class="glow-on-hover" type="button" onclick="home()"> 처음 화면으로 </button>
+	</div>
+</body>
+
+<script type="text/javascript">
+	function home()  {
+		window.location.href = '/index'
+	}
+	
+    $(document).ready(function(){
+    	$('.container').children('.header').animate({opacity: "1"}, 1000, function(){
+    		$('.container').children('.glow-on-hover').animate({opacity: "1"}, 1000)
+    	 })
+    });        
+</script>
+</html>

@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.container{
+	color: white;
+}
+
+.container #feedback{
+	color: white;
+}
+
+
+.container .glow-on-hover {
+    opacity: 1;

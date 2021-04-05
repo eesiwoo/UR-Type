@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="../static/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="../static/css/result.css" rel="stylesheet" type="text/css" />
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+	<div class="container">
+	<div class="test">
+	</div>
+		<div class="header">
+			<h1>Is Your Type ?</h1>
+			{{length}}개의 브랜드를 찾았습니다.
+			<br/>
+			당신의 취향에 맞는 브랜드인가요 ?
+		</div>
+		<br/>
+		{% for data in datas %}
+			<div class="brand" data-aos="fade-up" data-aos-duration="1000">
+				<h3>{{data.brand_Name}}</h3>
+				{{data.brand_Ment}}
+				<br/>
+				<img class="brand_img" alt="{{data.brand_Name}} 이미지" src="{{data.brand_Img}}">
+				<br/>
+				<a href="{{data.brand_Url}}" target="blank">{{data.brand_Name}} 홈페이지</a> 
+			</div>
+		{% endfor %}
+		<div>
+		카카오톡 공유하기 / 피드백 버튼
+		</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+	/* 페이지 로딩 */
+	$(document).ready(function(){
+		$('.container').children('.header').animate({opacity: "1"}, 1000)
+	})
+	/* 스크롤 api */
+	AOS.init();
+</script>
+
+</html>

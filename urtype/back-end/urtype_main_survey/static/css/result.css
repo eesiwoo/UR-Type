@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+
+
+.container .brand{
+	color: white;
+	margin: 50px 50px 50px 50px;
+}
+
+.container .brand .brand_img{
+	margin: 10px 10px 10px 10px;
+}
