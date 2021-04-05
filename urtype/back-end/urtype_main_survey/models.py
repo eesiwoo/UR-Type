@@ -2,7 +2,7 @@ from django.db import models
 
 class Globals(models.Model):
     brand_Name = models.CharField(db_column='brand_Name', primary_key=True, max_length=100)  # Field name made lowercase.
-    brand_Ment = models.CharField(db_column='brand_Ment', max_length=200)  # Field name made lowercase.
+    brand_Ment = models.CharField(db_column='brand_Ment', max_length=500)  # Field name made lowercase.
     brand_Genre = models.CharField(db_column='brand_Genre', max_length=45)  # Field name made lowercase.
     design_Point = models.CharField(db_column='design_Point', max_length=10)  # Field name made lowercase.
     design_Color = models.CharField(db_column='design_Color', max_length=10)  # Field name made lowercase.
@@ -17,7 +17,7 @@ class Globals(models.Model):
 
 class Middle(models.Model):
     brand_Name = models.CharField(db_column='brand_Name', primary_key=True, max_length=100)  # Field name made lowercase.
-    brand_Ment = models.CharField(db_column='brand_Ment', max_length=200)  # Field name made lowercase.
+    brand_Ment = models.CharField(db_column='brand_Ment', max_length=500)  # Field name made lowercase.
     brand_Genre = models.CharField(db_column='brand_Genre', max_length=45)  # Field name made lowercase.
     design_Point = models.CharField(db_column='design_Point', max_length=10)  # Field name made lowercase.
     design_Color = models.CharField(db_column='design_Color', max_length=10)  # Field name made lowercase.
@@ -32,7 +32,7 @@ class Middle(models.Model):
 
 class National(models.Model):
     brand_Name = models.CharField(db_column='brand_Name', primary_key=True, max_length=100)  # Field name made lowercase.
-    brand_Ment = models.CharField(db_column='brand_Ment', max_length=200)  # Field name made lowercase.
+    brand_Ment = models.CharField(db_column='brand_Ment', max_length=500)  # Field name made lowercase.
     brand_Genre = models.CharField(db_column='brand_Genre', max_length=45)  # Field name made lowercase.
     design_Point = models.CharField(db_column='design_Point', max_length=10)  # Field name made lowercase.
     design_Color = models.CharField(db_column='design_Color', max_length=10)  # Field name made lowercase.
@@ -47,7 +47,7 @@ class National(models.Model):
 
 class Soho(models.Model):
     brand_Name = models.CharField(db_column='brand_Name', primary_key=True, max_length=100)  # Field name made lowercase.
-    brand_Ment = models.CharField(db_column='brand_Ment', max_length=200)  # Field name made lowercase.
+    brand_Ment = models.CharField(db_column='brand_Ment', max_length=500)  # Field name made lowercase.
     brand_Genre = models.CharField(db_column='brand_Genre', max_length=45)  # Field name made lowercase.
     design_Point = models.CharField(db_column='design_Point', max_length=10)  # Field name made lowercase.
     design_Color = models.CharField(db_column='design_Color', max_length=10)  # Field name made lowercase.
