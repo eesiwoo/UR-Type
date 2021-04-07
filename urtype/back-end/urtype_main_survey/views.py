@@ -8,18 +8,15 @@ from urtype_main_survey.models import Soho
 from urtype_main_survey.models import Userinfo
 
 
-
-def test(request):
-    datas = Globals.objects.all()
-    return render(request, 'home.html',{'datas':datas})
-
 def Index(request):
     datas = Globals.objects.all()
     return render(request, 'index.html')
 
+
 def WhoAreYou(request):
     datas = Globals.objects.all()
     return render(request, 'whoAreYou.html')
+
 
 def UserInfo(request):
     print('work')
@@ -33,6 +30,7 @@ def UserInfo(request):
         print('user_Age :',user_age)
         print('user_Job :',user_job)
     return render(request, 'survey.html')
+  
             
 def Result(request):
     print('Result_test')
@@ -52,11 +50,14 @@ def Result(request):
             datas = ReadMiddle(brand_Genre,design_Point, design_Color, avg_Price)
         if brand_Size == 'Soho' :
             datas = ReadSoho(brand_Genre, design_Point, design_Color, avg_Price)
+        
     length = datas.count()
     return render(request, 'result.html',{'datas':datas, 'length':length})
 
+
 def Feedback_form(request):
     return render(request, 'feedback.html')
+
 
 def Send_Email(request):
     if request.method == 'POST' :
@@ -76,6 +77,9 @@ def ReadGlobals(genre, point, color, price):
         design_Color = color,
         avg_Price = price
         )
+    
+    name = datas.only('brand_Name')
+    print(name)
     return datas
 
 def ReadMiddle(genre, point, color, price):

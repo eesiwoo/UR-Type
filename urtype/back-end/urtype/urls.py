@@ -21,8 +21,7 @@ from urtype_main_survey import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home', views.test),
-    path('index', views.Index),
+    path('', views.Index),
     path('whoareyou', views.WhoAreYou),
     path('userInfo', views.UserInfo),
     path('result', views.Result),

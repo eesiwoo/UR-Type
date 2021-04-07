@@ -3,35 +3,53 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="../static/css/index.css" rel="stylesheet" type="text/css" />
 	<link href="../static/css/result.css" rel="stylesheet" type="text/css" />
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
 </head>
 <body>
 	<div class="container">
-	<div class="test">
-	</div>
 		<div class="header">
-			<h1>Is Your Type ?</h1>
-			{{length}}개의 브랜드를 찾았습니다.
-			<br/>
-			당신의 취향에 맞는 브랜드인가요 ?
+			{% if length %}
+				<h1>Is Your Type ?</h1>
+				{{length}}개의 브랜드를 찾았습니다.
+				<br/>
+				당신의 취향에 맞는 브랜드인가요 ?
+				<br/><br/><br/><br/>
+				<hr>
+			{% else %}
+				<h1> Sorry..</h1>
+				죄송합니다. 아직 당신 취향의 브랜드를 찾지 못했어요.
+				<br/>
+				브랜드 정보를 업데이트할 수 있도록
+				<br/>
+				당신 취향에 대한 피드백을 보내주세요.
+			{% endif %}
 		</div>
 		<br/>
 		{% for data in datas %}
-			<div class="brand" data-aos="fade-up" data-aos-duration="1000">
+			<div class="brand" data-aos="fade-up" data-aos-duration="3000">
 				<h3>{{data.brand_Name}}</h3>
-				{{data.brand_Ment}}
-				<br/>
 				<img class="brand_img" alt="{{data.brand_Name}} 이미지" src="{{data.brand_Img}}">
 				<br/>
-				<a href="{{data.brand_Url}}" target="blank">{{data.brand_Name}} 홈페이지</a> 
+				{{data.brand_Ment}}
+				<br/>
+				<br/>
+				<a href="{{data.brand_Url}}" target="blank">{{data.brand_Name}} 무신사 홈페이지</a> 
 			</div>
 		{% endfor %}
-		<div>
-		카카오톡 공유하기 / 피드백 버튼
+		<div data-aos="fade-up" data-aos-duration="3000">
+		원하시는 결과를 얻으셨나요 ?<br/>
+		브랜드가 맞지 않거나, 추가되었으면 하는 브랜드가 있다면<br/>
+		피드백을 보내주세요.<br/>
+		<br/><br/>
+		<button class="glow-on-hover" data-aos="fade-up" data-aos-duration="3000" type="button" id="share">공 유 하 기 </button>
+		<button class="glow-on-hover" data-aos="fade-up" data-aos-duration="3000" type="button" id="feedback"> Feedback </button>
+		</div>
+		<div class="empty">
+		<br/>
 		</div>
 	</div>
 </body>
@@ -41,7 +59,12 @@
 	$(document).ready(function(){
 		$('.container').children('.header').animate({opacity: "1"}, 1000)
 	})
-	/* 스크롤 api */
+	
+	/* 피드백 버튼 */
+	$('#feedback').click(function(){
+		window.location.href = '/feedback'
+	});
+	
 	AOS.init();
 </script>
 
