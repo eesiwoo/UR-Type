@@ -6,6 +6,7 @@ from urtype_main_survey.models import Middle
 from urtype_main_survey.models import National
 from urtype_main_survey.models import Soho
 from urtype_main_survey.models import Userinfo
+from astropy.io.misc.yaml import name
 
 
 def Index(request):
@@ -43,14 +44,16 @@ def Result(request):
         
         # 브랜드 규모에 따라 테이블에서 값 불러오기
         if brand_Size == 'Globals' :
-            datas = ReadGlobals(brand_Genre,design_Point, design_Color, avg_Price)
+            datas, name = ReadGlobals(brand_Genre,design_Point, design_Color, avg_Price)
         if brand_Size == 'National' :
-            datas = ReadNational(brand_Genre, design_Point, design_Color, avg_Price)
+            datas, name = ReadNational(brand_Genre, design_Point, design_Color, avg_Price)
         if brand_Size == 'Middle' :
-            datas = ReadMiddle(brand_Genre,design_Point, design_Color, avg_Price)
+            datas, name = ReadMiddle(brand_Genre,design_Point, design_Color, avg_Price)
         if brand_Size == 'Soho' :
-            datas = ReadSoho(brand_Genre, design_Point, design_Color, avg_Price)
+            datas, name = ReadSoho(brand_Genre, design_Point, design_Color, avg_Price)
         
+        # 유저 정보 업데이트
+        UserInfoUpdate(name)
     length = datas.count()
     return render(request, 'result.html',{'datas':datas, 'length':length})
 
@@ -77,10 +80,10 @@ def ReadGlobals(genre, point, color, price):
         design_Color = color,
         avg_Price = price
         )
+    name = datas.values_list('brand_Name',flat=True)
+    name = list(name)
     
-    name = datas.only('brand_Name')
-    print(name)
-    return datas
+    return datas, name
 
 def ReadMiddle(genre, point, color, price):
     datas = Middle.objects.filter(
@@ -89,7 +92,10 @@ def ReadMiddle(genre, point, color, price):
         design_Color = color,
         avg_Price = price
         )
-    return datas
+    name = datas.values_list('brand_Name',flat=True)
+    name = list(name)
+    
+    return datas, name
 
 def ReadNational(genre, point, color, price):
     datas = National.objects.filter(
@@ -98,7 +104,10 @@ def ReadNational(genre, point, color, price):
         design_Color = color,
         avg_Price = price
         )
-    return datas
+    name = datas.values_list('brand_Name',flat=True)
+    name = list(name)
+    
+    return datas, name
 
 def ReadSoho(genre, point, color, price):
     datas = Soho.objects.filter(
@@ -107,5 +116,14 @@ def ReadSoho(genre, point, color, price):
         design_Color = color,
         avg_Price = price
         )
-    return datas
+    name = datas.values_list('brand_Name',flat=True)
+    name = str(name)
+    
+    return datas, name
+
+def UserInfoUpdate(name):
+    user_info = Userinfo.objects.last()
+    user_info.brand_name = name
+    user_info.save()
+     
     
