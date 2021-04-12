@@ -6,7 +6,7 @@ from urtype_main_survey.models import Middle
 from urtype_main_survey.models import National
 from urtype_main_survey.models import Soho
 from urtype_main_survey.models import Userinfo
-from astropy.io.misc.yaml import name
+
 
 
 def Index(request):

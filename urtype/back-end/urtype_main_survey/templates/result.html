@@ -7,6 +7,7 @@
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 	
 </head>
 <body>
@@ -46,7 +47,7 @@
 		브랜드가 맞지 않거나, 추가되었으면 하는 브랜드가 있다면<br/>
 		피드백을 보내주세요.<br/>
 		<br/><br/>
-		<button class="glow-on-hover" data-aos="fade-up" data-aos-duration="3000" type="button" id="share">공 유 하 기 </button>
+		<button class="glow-on-hover" data-aos="fade-up" data-aos-duration="3000" type="button" id="share">카카오톡 공유하기 </button>
 		<button class="glow-on-hover" data-aos="fade-up" data-aos-duration="3000" type="button" id="feedback"> Feedback </button>
 		</div>
 		<div class="empty">
@@ -61,12 +62,36 @@
 		$('.container').children('.header').animate({opacity: "1"}, 1000)
 	})
 	
+	/* 애니메이션 */
+	AOS.init();
+	
+	/* 공유하기 */
+	Kakao.init('53bed48fafefedefe3f9659932333000');
+	function sendLink() {
+	        Kakao.Link.createDefaultButton({
+	            container: "#share",
+	            objectType : "feed",
+	            content: {
+	            	title: "[UR-Type] 내 패션 취향에 맞는 브랜드 찾기",
+	            	description: "취향에 맞는 무신사 브랜드를 찾아보세요.",
+	            	imageUrl:"https://media.vlpt.us/images/eesiwoo/post/9d808c0c-45d8-4ef1-97d5-619c6bf16202/urtype.png",
+	            	link:{
+	            		webUrl:"http://urtype.ga",
+	            		mobileWebUrl:"http://urtype.ga"
+	            	}
+	            }        
+	        });
+	    };
+	
 	/* 피드백 버튼 */
 	$('#feedback').click(function(){
 		window.location.href = '/feedback'
 	});
 	
-	AOS.init();
+	/* 공유 버튼 */
+	$('#share').click(sendLink());
+
+
 </script>
 
 </html>

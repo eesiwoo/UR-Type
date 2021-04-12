@@ -42,7 +42,8 @@ SECRET_KEY = get_secret("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-                '3.34.193.212',
+                'urtype.ga',
+                'www.urtype.ga',
                 '127.0.0.1'
                  ]
 

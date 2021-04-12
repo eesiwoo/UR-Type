@@ -62,8 +62,8 @@ class Soho(models.Model):
 
 class Userinfo(models.Model):
     user_id = models.AutoField(db_column='user_ID', primary_key=True)  # Field name made lowercase.
-    user_age = models.CharField(db_column='user_Age', max_length=50)  # Field name made lowercase.
-    user_job = models.CharField(db_column='user_Job', max_length=50)  # Field name made lowercase.
+    user_age = models.CharField(db_column='user_Age', max_length=45)  # Field name made lowercase.
+    user_job = models.CharField(db_column='user_Job', max_length=20)  # Field name made lowercase.
     brand_name = models.CharField(db_column='brand_Name', max_length=150)  # Field name made lowercase.
 
     class Meta:
