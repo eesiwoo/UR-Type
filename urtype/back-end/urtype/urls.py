@@ -25,6 +25,7 @@ urlpatterns = [
     path('whoareyou', views.WhoAreYou),
     path('userInfo', views.UserInfo),
     path('result', views.Result),
+    path('result_share', views.ShareResult),
     path('feedback', views.Feedback_form),
     path('Send_Email', views.Send_Email)
 ]

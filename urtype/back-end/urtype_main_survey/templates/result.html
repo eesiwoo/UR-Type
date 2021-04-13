@@ -23,6 +23,7 @@
 			{% else %}
 				<h1> Sorry..</h1>
 				죄송합니다. 아직 당신 취향의 브랜드를 찾지 못했어요.
+				{{aa.value}}
 				<br/>
 				브랜드 정보를 업데이트할 수 있도록
 				<br/>
@@ -67,6 +68,7 @@
 	
 	/* 공유하기 */
 	Kakao.init('53bed48fafefedefe3f9659932333000');
+	share_data = "/result_share?Size={{kakao_data.Size}}&Genre={{kakao_data.Genre}}&Point={{kakao_data.Point}}&Color={{kakao_data.Color}}&Price={{kakao_data.Price}}"
 	function sendLink() {
 	        Kakao.Link.createDefaultButton({
 	            container: "#share",
@@ -76,8 +78,8 @@
 	            	description: "취향에 맞는 무신사 브랜드를 찾아보세요.",
 	            	imageUrl:"https://media.vlpt.us/images/eesiwoo/post/9d808c0c-45d8-4ef1-97d5-619c6bf16202/urtype.png",
 	            	link:{
-	            		webUrl:"http://urtype.ga",
-	            		mobileWebUrl:"http://urtype.ga"
+	            		webUrl:"http://urtype.xyz" + share_data,
+	            		mobileWebUrl:"http://urtype.xyz" + share_data
 	            	}
 	            }        
 	        });
